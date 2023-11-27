@@ -1,12 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
   <display-name>kseb-complaint-mnt</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
+
+    <!-- Welcome page -->
+    <welcome-file-list>
+        <welcome-file>Login.html</welcome-file>
+    </welcome-file-list>
+
+<!-- Servlet Mapping for LoginServlet -->
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.kseb.LoginServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Servlet Mapping for AdminHomePageServlet -->
+<servlet>
+    <servlet-name>AdminHomePageServlet</servlet-name>
+    <servlet-class>com.kseb.AdminHomePageServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>AdminHomePageServlet</servlet-name>
+    <url-pattern>/AdminHomePage</url-pattern>
+</servlet-mapping>
+
+
+    <!-- Servlet Mapping for ConsumerServlet -->
+<servlet>
+    <servlet-name>ConsumerServlet</servlet-name>
+    <servlet-class>com.kseb.ConsumerServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>ConsumerServlet</servlet-name>
+    <url-pattern>/ConsumerServlet</url-pattern>
+</servlet-mapping>
+
+    <!-- Servlet Mapping for EmployeeServlet -->
+<servlet>
+    <servlet-name>EmployeeServlet</servlet-name>
+    <servlet-class>com.kseb.EmployeeServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>EmployeeServlet</servlet-name>
+    <url-pattern>/EmployeeServlet</url-pattern>
+</servlet-mapping>
+
 </web-app>

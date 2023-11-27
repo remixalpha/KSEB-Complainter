@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Complaint Management System</title>
+<link href="https://www.jqueryscript.net/css/jquerysctipttop.css"
+	rel="stylesheet" type="text/css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/flatly/bootstrap.min.css">
+<!-- side Bar -->
+<link rel="stylesheet"
+	href="/kseb-complaint-mnt/WebContent/css/next-sidebar.css" />
+<link rel="stylesheet"
+	href="/kseb-complaint-mnt/WebContent/css/perfect-scrollbar.css" />
+<!--  -->
+<!-- Date -->
+<link href="/css/jquery.datepicker2.css" rel="stylesheet">
+<!--  -->
+<!-- create User -->
+<style>
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #000000;
+}
+
+#navbar {
+	background-color: #000000;
+	color: white;
+	padding-top: 40px;
+	padding-bottom: 30px;
+	text-align: left;
+	border-bottom: 1px solid #a1a1a1;
+	margin-left: 20rem;
+	margin-right: 20px;
+}
+
+/* sidebar */
+.container-wide {
+	min-height: 100vh;
+	padding-left: 280px;
+	-webkit-transition: all .2s ease;
+	-o-transition: all .2s ease;
+	transition: all .2s ease
+}
+
+@media screen and (min-width:1200px) {
+	.container-wide {
+		padding-left: 280px
+	}
+}
+
+@media screen and (max-width:991px) {
+	.container-wide {
+		padding-left: 0
+	}
+}
+
+.is-collapsed .container-wide {
+	padding-left: 70px
+}
+
+@media screen and (min-width:992px) {
+	.is-collapsed .container-wide {
+		padding-left: 70px
+	}
+}
+
+a {
+	text-decoration: none
+}
+
+.sidebar {
+	margin-top: 30px;
+	margin-bottom: 30px;
+	bottom: 0;
+	overflow: hidden;
+	position: fixed;
+	top: 0;
+	-webkit-transition: all .2s ease;
+	-o-transition: all .2s ease;
+	transition: all .2s ease;
+	width: 280px;
+	background-color: #000000;
+	border-right: 1px solid #a1a1a1;
+	color: #fff;
+	z-index: 9999
+}
+
+.sidebar ul {
+	list-style-type: none
+}
+
+@media screen and (min-width:992px) {
+	.sidebar {
+		width: 280px
+	}
+	.sidebar .sidebar-inner .sidebar-logo {
+		padding: 0 20px
+	}
+	.sidebar .sidebar-inner .sidebar-logo .logo-sm {
+		display: none
+	}
+	.sidebar .sidebar-inner .sidebar-logo>a .logo {
+		background-position: 0;
+		width: 150px
+	}
+	.sidebar .sidebar-inner .sidebar-menu>li>a .title {
+		display: inline-block
+	}
+	.sidebar .sidebar-inner .sidebar-menu li.dropdown .arrow {
+		opacity: 1
+	}
+	.sidebar .sidebar-inner .sidebar-menu li.open>ul.dropdown-menu {
+		display: block !important
+	}
+}
+
+@media screen and (max-width:991px) {
+	.sidebar {
+		left: -280px;
+		width: 250px
+	}
+}
+
+.sidebar-inner {
+	position: relative;
+	height: 100%
+}
+
+.sidebar-logo {
+	line-height: 0;
+	padding: 0 20px
+}
+
+.sidebar-logo a {
+	display: inline-block;
+	width: 100%;
+	color: #fff
+}
+
+.sidebar-logo a .logo {
+	background-position: 0;
+	background-repeat: no-repeat;
+	display: inline-block;
+	min-height: 64px;
+	width: 70px
+}
+
+.sidebar-logo a .logo img {
+	width: 30px
+}
+
+.sidebar-logo a .logo-text {
+	min-height: 64px
+}
+
+.sidebar-logo a .logo-text img {
+	width: 120px
+}
+
+.sidebar-logo .mobile-toggle {
+	display: none;
+	float: right;
+	font-size: 18px;
+	line-height: 64px
+}
+
+.sidebar-logo .mobile-toggle a {
+	color: #fff
+}
+
+@media screen and (max-width:991px) {
+	.sidebar-logo .mobile-toggle {
+		display: inline-block
+	}
+}
+
+@media screen and (min-width:992px) {
+	.sidebar-logo .mobile-toggle {
+		display: none
+	}
+}
+
+.sidebar-menu {
+	height: calc(100vh - 65px);
+	list-style: none;
+	margin: 0;
+	overflow: auto;
+	padding: 0;
+	position: relative
+}
+
+.sidebar-menu .dropdown-toggle:after {
+	display: none
+}
+
+.sidebar-menu .sidebar-link.actived:before {
+	background: #0f9aee;
+	border-radius: 50%;
+	content: "";
+	display: block;
+	height: 8px;
+	left: -4px;
+	position: absolute;
+	top: calc(50% - 4px);
+	width: 8px
+}
+
+.sidebar-menu li {
+	position: relative
+}
+
+.sidebar-menu li.dropdown .arrow {
+	font-size: 10px;
+	line-height: 40px;
+	position: absolute;
+	right: 30px;
+	-webkit-transition: all .05s ease-in;
+	-o-transition: all .05s ease-in;
+	transition: all .05s ease-in
+}
+
+@media screen and (max-width:991px) {
+	.sidebar-menu li.dropdown .arrow {
+		right: 25px
+	}
+}
+
+.sidebar-menu li.dropdown.open>a {
+	color: #fff
+}
+
+.sidebar-menu li.dropdown.open>a .icon-holder {
+	color: #0f77ee
+}
+
+.sidebar-menu li.dropdown.open>a>.arrow {
+	-webkit-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	transform: rotate(90deg)
+}
+
+.sidebar-menu li.dropdown.open>.dropdown-menu {
+	display: block
+}
+
+.sidebar-menu li.dropdown.open>.dropdown-menu .dropdown-menu {
+	padding-left: 20px
+}
+
+.sidebar-menu li.dropdown.open>.dropdown-menu .arrow {
+	line-height: 25px
+}
+
+.sidebar-menu li a {
+	color: #fff;
+	-webkit-transition: all .3s ease;
+	-o-transition: all .3s ease;
+	transition: all .3s ease
+}
+
+.sidebar-menu li a:focus, .sidebar-menu li a:hover {
+	color: #fff;
+	text-decoration: none;
+	border-radius: 15px;
+	margin: 10px;
+	background-color: #121212;
+}
+
+.sidebar-menu>li.dropdown ul.dropdown-menu {
+	background-color: rgba(0, 0, 0, 0);
+	border-radius: 0;
+	border: 0;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	float: none;
+	padding-left: 50px;
+	padding-top: 0;
+	position: relative;
+	width: 100%
+}
+
+.sidebar-menu>li.dropdown ul.dropdown-menu>li>a {
+	display: flex;
+	flex-direction: row;
+	gap: 15px;
+	padding: 10px 20px;
+	font-size: 14px
+}
+
+.sidebar-menu>li.dropdown ul.dropdown-menu>li>a:focus, .sidebar-menu>li.dropdown ul.dropdown-menu>li>a:hover
+	{
+	background-color: #121212;
+	border-radius: 15px;
+	margin: 10px;
+	color: #fff
+}
+
+.sidebar-menu>li.dropdown ul.dropdown-menu>li.actived a {
+	color: #fff
+}
+
+.sidebar-menu>li>a {
+	display: block;
+	font-size: 15px;
+	padding: 5px 15px;
+	position: relative;
+	white-space: nowrap
+}
+
+.sidebar-menu>li>a .icon-holder {
+	border-radius: 6px;
+	display: inline-block;
+	font-size: 17px;
+	height: 35px;
+	left: 0;
+	line-height: 35px;
+	margin-right: 14px;
+	position: relative;
+	text-align: center;
+	-webkit-transition: all .3s ease;
+	-o-transition: all .3s ease;
+	transition: all .3s ease;
+	width: 35px
+}
+
+@media screen and (min-width:992px) {
+	.is-collapsed .sidebar {
+		width: 70px
+	}
+	.is-collapsed .sidebar .sidebar-inner .sidebar-logo {
+		padding: 0
+	}
+	.is-collapsed .sidebar .sidebar-inner .sidebar-logo .logo-sm {
+		display: inline
+	}
+	.is-collapsed .sidebar .sidebar-inner .sidebar-menu {
+		overflow-x: hidden
+	}
+	.is-collapsed .sidebar .sidebar-inner .sidebar-menu>li>a .title {
+		display: none
+	}
+	.is-collapsed .sidebar .sidebar-inner .sidebar-menu li.dropdown .arrow {
+		opacity: 0
+	}
+	.is-collapsed .sidebar:hover {
+		width: 280px
+	}
+	.is-collapsed .sidebar:hover .sidebar-inner .sidebar-logo {
+		padding: 0 20px
+	}
+	.is-collapsed .sidebar:hover .sidebar-inner .sidebar-logo .logo-sm {
+		display: none
+	}
+	.is-collapsed .sidebar:hover .sidebar-inner .sidebar-menu>li>a .title {
+		display: inline-block
+	}
+	.is-collapsed .sidebar:hover .sidebar-inner .sidebar-menu li.dropdown .arrow
+		{
+		opacity: 1
+	}
+	.is-collapsed .sidebar:hover .sidebar-inner .sidebar-menu li.open>ul.dropdown-menu
+		{
+		display: block !important
+	}
+}
+
+@media screen and (max-width:991px) {
+	.is-collapsed .sidebar {
+		width: 280px;
+		left: 0
+	}
+	.is-collapsed .sidebar .sidebar-inner .sidebar-logo {
+		padding: 0 20px
+	}
+	.is-collapsed .sidebar .sidebar-inner .sidebar-logo .logo-sm {
+		display: none
+	}
+	.is-collapsed .sidebar .sidebar-inner .sidebar-logo>a .logo {
+		background-position: 0;
+		width: 150px
+	}
+	.is-collapsed .sidebar .sidebar-inner .sidebar-menu>li>a .title {
+		display: inline-block
+	}
+	.is-collapsed .sidebar .sidebar-inner .sidebar-menu li.dropdown .arrow {
+		opacity: 1
+	}
+	.is-collapsed .sidebar .sidebar-inner .sidebar-menu li.open>ul.dropdown-menu
+		{
+		display: block !important
+	}
+}
+
+h2 {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	margin-left: 8rem;
+}
+
+
+#content {
+	margin-top: 6px;
+}
+
+.form-container {
+	position: relative;
+	justify-content: center;
+	align-items: center;
+	max-width: 50%;
+	margin: auto;
+}
+
+.form-group {
+	margin-bottom: 15px;
+}
+
+.form-group label {
+	display: block;
+	margin-bottom: 5px;
+}
+
+.form-group select {
+	width: 100%;
+	padding: 8px;
+	box-sizing: border-box;
+}
+
+.form-group button {
+	background-color: #ffff;
+	width: 100px;
+	border-radius: 5px;
+	color: #121212;
+	padding: 10px;
+	border: none;
+	cursor: pointer;
+}
+
+.form-group button:hover {
+	background-color: #333;
+}
+
+.form-control {
+	background-color: #121212;
+	border: 0.1px solid #a1a1a1;
+	border-radius: 10px;
+}
+
+.Form {
+	position: relative;
+	justify-content: center;
+	align-items: center;
+	width: 800px;
+	height: 650px;
+	padding: 50px 100px 50px 100px;
+	margin-top: 50px; border-radius : 30px;
+	background-color: #121212;
+	border-radius: 30px;
+}
+
+.FormWork {
+	position: relative;
+	justify-content: center;
+	align-items: center;
+	width: 500px;
+	margin: auto;
+	padding: 50px 100px 50px 100px;
+	border-radius: 30px;
+	background-color: #121212;
+	margin-top: 50px;
+	margin-left: 400px;
+}
+
+label {
+	color: #f2f2f2;
+}
+
+.compainFields {
+	display: flex;
+	flex-direction: row;
+	gap: 50px;
+}
+
+#consumerAddress {
+	height: 150px;
+}
+
+#employeeAddress {
+	height: 150px;
+}
+
+/*  complaint   */
+table {
+	border-collapse: collapse;
+	width: 80%;
+	margin-top: 50px;
+	margin-left: 300px;
+}
+
+th, td {
+	border: 1px solid #dddddd;
+	text-align: left;
+	padding: 8px;
+}
+
+td {
+	color: #fff;
+}
+
+th {
+	background-color: #f2f2f2;
+}
+
+.actions {
+	display: block;
+}
+
+/*  Work Allocation Section    */
+#workAllocationSection{
+	display : grid;
+    column-gap: 50px;
+	margin:auto;
+	
+}
+
+#workAllocationTable{
+	margin-top:-200px;
+	margin-left:200px;
+
+}
+
+
+
+
+
+
+
+</style>
+</head>
+<body class="app">
+
+	<!-- Side Bar -->
+	<div class="sidebar">
+		<div class="sidebar-inner">
+			<div class="sidebar-logo">
+
+				<div class="d-flex align-items-center flex-nowrap">
+					<!-- logo -->
+					<a class="sidebar-link text-decoration-none" href="#">
+						<div class="d-flex align-items-center flex-nowrap">
+
+							<div class="logo-sm">
+
+								<div
+									class="logo d-flex align-items-center justify-content-center">
+
+									<img
+										src="/images/kseb_logo-removebg-preview.png"
+										alt="Logo">
+
+								</div>
+							</div>
+							<div
+								class="logo-text d-flex align-items-center justify-content-center">
+								<img src="/images/kseb_logo-removebg-preview.png" alt="Logo">
+
+							</div>
+						</div>
+					</a>
+
+					<div class="">
+						<div class="mobile-toggle sidebar-toggle">
+							<a href="#" class="text-decoration-none"> <i
+								class="far fa-times-circle"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Sidebar Closing Menu -->
+				<!-- <nav class="navbar navbar-expand navbar-light ">
+                  <ul class="navbar-nav me-auto">
+                    <li class="nav-item active">
+                      <a id="sidebar-toggle" class="sidebar-toggle nav-link" href="#">
+                          <i class="fas fa-bars"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </nav> -->
+				<!--  -->
+
+
+
+			</div>
+
+			<ul class="sidebar-menu scrollable position-relative pt-3">
+				<!--Create User  -->
+
+				<li class="nav-item dropdown"><a
+					class="nav-link wave-effect dropdown-toggle" href="#"> <span
+						class="icon-holder"> <i class="fas fa-user-plus"></i>
+					</span> <span class="title">Create User</span> <span class="arrow">
+							<i class="fas fa-angle-right"></i>
+					</span>
+				</a>
+					<ul class="dropdown-menu">
+						<li onclick="showConsumerForm()"><a
+							class="nav-link wave-effect dropdown-toggle" href="#"
+							onclick="showCreateUserForm()"> <span class="icon-holder">
+									<i class="fas fa-user"></i>
+							</span> <span class="title">Consumer</span>
+
+						</a></li>
+						<li onclick="showEmployeeForm()"><a
+							class="nav-link wave-effect dropdown-toggle" href="#"
+							onclick="showCreateUserForm()"> <span class="icon-holder">
+									<i class="fas fa-user"></i>
+							</span> <span class="title">Employee</span>
+
+						</a></li>
+					</ul></li>
+				<!--Complaints  -->
+				<li class="nav-item dropdown" onclick="showComplaintForm()"><a
+					class="nav-link wave-effect" href="#""> <span
+						class="icon-holder"> <i class="fas fa-clipboard-list"></i>
+					</span> <span class="title">Complaints</span>
+				</a></li>
+				<!--Work Allocation  -->
+				<li class="nav-item dropdown" onclick="showWorkAllocationForm()">
+					<a class="nav-link wave-effect" href="#"> <span
+						class="icon-holder"> <i class="fas fa-fax"></i>
+					</span> <span class="title">Work Allocation</span>
+				</a>
+				</li>
+				<!-- Reports  -->
+				<li class="nav-item dropdown"><a class="nav-link wave-effect"
+					href="#"> <span class="icon-holder"> <i
+							class="fas fa-file-alt"></i>
+					</span> <span class="title">Reports</span>
+				</a></li>
+
+			</ul>
+		</div>
+	</div>
+	<!--  -->
+	<div id="navbar">
+		<h2>Welcome Admin</h2>
+	</div>
+	<!-- Content -->
+	<div id="content">
+
+
+		<!-- Create user Section -->
+		<div id="createUserForm" class="form-container">
+
+			<!-- Consumer -->
+			<div id="consumerForm" class="Form" style="display: none;">
+				<form id="consumerForm" onsubmit="saveConsumer(); return false;"
+					action="ConsumerServlet">
+					<div class="compainFields">
+						<div class="form-group">
+							<label for="consumerFirstName">First Name</label> <input
+								type="text" class="form-control" id="consumerFirstName"
+								name="consumerFirstName" required>
+						</div>
+						<div class="form-group">
+							<label for="consumerlastName">Last Name</label> <input
+								type="text" class="form-control" id="consumerLastName"
+								name="consumerLastName" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="consumerEmail">Email</label> <input type="email"
+							class="form-control" id="consumerEmail" name="consumerEmail"
+							required>
+					</div>
+					<div class="form-group">
+						<label for="consumerPhoneNo">Phone No</label> <input type="text"
+							class="form-control" id="consumerPhoneNo" name="consumerPhoneNo"
+							required>
+					</div>
+					<div class="form-group">
+						<label for="consumerAddress">Address</label> <input type="text"
+							class="form-control" id="consumerAddress" name="consumerAddress"
+							required>
+					</div>
+					<div class="compainFields">
+						<div class="form-group">
+							<label for="consumerHouseNo">House No</label> <input type="text"
+								class="form-control" id="consumerHouseNo" name="consumerHouseNo"
+								required>
+						</div>
+						<div class="form-group">
+							<label for="consumerPostNo">Post No</label> <input type="text"
+								class="form-control" id="consumerPostNo" name="consumerPostNo"
+								required>
+						</div>
+						<div class="form-group">
+							<label for="consumerMeterNo">Meter No</label> <input type="text"
+								class="form-control" id="consumerMeterNo" name="consumerMeterNo"
+								required>
+						</div>
+					</div>
+					<div class="form-group">
+						<button type="submit">Save</button>
+					</div>
+				</form>
+			</div>
+			<!--  -->
+			<!-- Employee -->
+			<div id="employeeForm" class="Form" style="display: none;">
+				<form id="employeeForm" onsubmit="saveEmployee(); return false;"
+					action="EmployeeServlet">
+					<div class="compainFields">
+						<div class="form-group">
+							<label for="employeeFirstName">First Name</label> <input
+								type="text" class="form-control" id="employeeFirstName"
+								name="employeeFirstName" required>
+						</div>
+						<div class="form-group">
+							<label for="employeeLastName">Last Name</label> <input
+								type="text" class="form-control" id="employeeLastName"
+								name="employeeLastName" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="employeeEmail">Email</label> <input type="email"
+							class="form-control" id="employeeEmail" name="employeeEmail"
+							required>
+					</div>
+					<div class="form-group">
+						<label for="employeePhoneNo">Phone No</label> <input type="text"
+							class="form-control" id="employeePhoneNo" name="employeePhoneNo"
+							required>
+					</div>
+					<div class="form-group">
+						<label for="employeeAddress">Address</label> <input type="text"
+							class="form-control" id="employeeAddress" name="employeeAddress"
+							required>
+					</div>
+					<div class="compainFields">
+						<div class="form-group">
+							<label for="employeeCity">City</label> <input type="text"
+								class="form-control" id="employeeCity" name="employeeCity"
+								required>
+						</div>
+						<div class="form-group">
+							<label for="employeePincode">Pincode</label> <input type="text"
+								class="form-control" id="employeePincode" name="employeePincode"
+								required>
+						</div>
+
+					</div>
+					<div class="form-group">
+						<button type="submit">Save</button>
+					</div>
+				</form>
+			</div>
+			<!--  -->
+		</div>
+		<!--  -->
+		<!-- Complaint Section -->
+		<div id="complaintTable" style="display: none;">
+			<table>
+				<thead>
+					<tr>
+						<th>S/No</th>
+						<th>Complaint No</th>
+						<th>Consumer No</th>
+						<th>Complaint Registered Date</th>
+						<th>Phone No</th>
+						<th>Location</th>
+						<th>Post No</th>
+						<th>Complaint</th>
+						<th>Updated Date</th>
+						<th>Status</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- Sample data, replace with your actual data -->
+					<tr class="table-row">
+						<td>1</td>
+						<td>12345</td>
+						<td>7890</td>
+						<td>2023-11-20</td>
+						<td>555-1234</td>
+						<td>City A</td>
+						<td>00123</td>
+						<td>Description of the complaint</td>
+						<td>2023-11-21</td>
+						<td>Pending</td>
+						<td class="actions"><a href="#">Edit</a> | <a href="#">Delete</a>
+						</td>
+					</tr>
+
+					<!-- Add more rows as needed -->
+				</tbody>
+			</table>
+		</div>
+		<!--  -->
+
+		<!-- Work Allocation Section -->
+		<div id="workAllocationSection" style="display: none;">
+			<div id="workAllocationForm" class="FormWork" >
+				<form>
+					<div class="form-group">
+						<label for="consumerlastName">Date</label> <input type="text"
+							class="form-control" name="date" id="date"
+							data-select="datepicker">
+					</div>
+					<div class="form-group">
+						<label for="userType">Complaint No</label> <select id="userType"
+							class="form-control">
+							<option value="" disabled selected></option>
+							<option value="complaintNo">890</option>
+							<option value="complaintNo">678</option>
+						</select>
+						<div class="form-group">
+							<label for="userType">Line Man</label> <select id="userType"
+								class="form-control">
+								<option value="" disabled selected></option>
+								<option value="lineMan">Arith</option>
+								<option value="lineMan">John</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<button type="button" onclick="allocateLineMan()">Upload</button>
+						</div>
+				</form>
+			</div>
+
+
+			<div id="workAllocationTable">
+				<table>
+					<thead>
+						<tr>
+							<th>S/No</th>
+							<th>Complaint No</th>
+							<th>Consumer No</th>
+							<th>Complaint Registered Date</th>
+							<th>Phone No</th>
+							<th>Location</th>
+							<th>Post No</th>
+							<th>Complaint</th>
+							<th>Updated Date</th>
+							<th>Status</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- Sample data, replace with your actual data -->
+						<tr class="table-row">
+							<td>1</td>
+							<td>12345</td>
+							<td>7890</td>
+							<td>2023-11-20</td>
+							<td>555-1234</td>
+							<td>City A</td>
+							<td>00123</td>
+							<td>Description of the complaint</td>
+							<td>2023-11-21</td>
+							<td>Pending</td>
+							<td class="actions"><a href="#">Edit</a> | <a href="#">Delete</a>
+							</td>
+						</tr>
+
+						<!-- Add more rows as needed -->
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!--  -->
+
+	</div>
+	<!--  -->
+
+	<!-- sidebar -->
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="/js/perfect-scrollbar.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+		crossorigin="anonymous"></script>
+	<script src="/js/next-sidebar.js"></script>
+
+	<!--  -->
+
+	<!-- Date -->
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+		integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+		crossorigin="anonymous"></script>
+	<script src="/js/jquery.datepicker2.js"></script>
+	<!--  -->
+
+
+	<!-- To save Consumer data  -->
+
+	<script>
+	    function saveConsumer() {
+	        var form = document.getElementById("consumerForm");
+	        var formData = new FormData(form);
+	
+	        var xhr = new XMLHttpRequest();
+	        xhr.open("POST", "ConsumerServlet", true);
+	        xhr.onreadystatechange = function () {
+	            if (xhr.readyState == 4 && xhr.status == 200) {
+	                // Handle the response if needed
+	                // You can display a success message or perform additional actions
+	                // For now, let's just reload the page
+	                window.location.reload();
+	            }
+	        };
+	        xhr.send(formData);
+	    }
+	</script>
+
+	<!-- To save Employee data  -->
+	<script>
+		function saveEmployee() {
+		    var form = document.getElementById("employeeForm");
+		    var formData = new FormData(form);
+		
+		      var xhr = new XMLHttpRequest();
+		        xhr.open("POST", "EmployeeServlet", true);
+		        xhr.onreadystatechange = function () {
+		            if (xhr.readyState == 4 && xhr.status == 200) {
+		                // Handle the response if needed
+		                // You can display a success message or perform additional actions
+		                // For now, let's just reload the page
+		                window.location.reload();
+		            }
+		        };
+		        xhr.send(formData);
+		}
+	</script>
+	
+	<script>
+	
+	    function allocateLineMan() {
+	        // Logic to save employee data
+	        alert('Line Man Allocated!');
+	    }
+
+	
+	</script>
+
+
+<!-- For the sideBar Switch Content Visibility -->
+
+	<script>
+	
+	    function showConsumerForm() {
+	        document.getElementById('consumerForm').style.display = 'block';
+	        document.getElementById('employeeForm').style.display = 'none';
+	      document.getElementById('complaintTable').style.display = 'none';
+	      document.getElementById('workAllocationSection').style.display = 'none';
+	    }
+	
+	    function showEmployeeForm() {
+	        document.getElementById('consumerForm').style.display = 'none';
+	        document.getElementById('employeeForm').style.display = 'block';
+	        document.getElementById('workAllocationSection').style.display = 'none';
+	      document.getElementById('complaintTable').style.display = 'none';
+	    }
+	
+	
+	    function showComplaintForm () {
+	      document.getElementById('consumerForm').style.display = 'none';
+	      document.getElementById('employeeForm').style.display = 'none';
+	      document.getElementById('workAllocationSection').style.display = 'none';
+	      document.getElementById('complaintTable').style.display = 'block';
+	  }
+	    function showWorkAllocationForm () {
+	      document.getElementById('consumerForm').style.display = 'none';
+	      document.getElementById('employeeForm').style.display = 'none';
+	      document.getElementById('complaintTable').style.display = 'none';
+	      document.getElementById('workAllocationSection').style.display = 'block';
+	  }
+    
+	</script>
+
+	<!-- For SideBar  -->
+	<script>
+        $(function () {
+            // Sidebar links
+            $('.sidebar .sidebar-menu li a').on('click', function () {
+                const $this = $(this);
+
+                if ($this.parent().hasClass('open')) {
+                    $this
+                        .parent()
+                        .children('.dropdown-menu')
+                        .slideUp(200, () => {
+                            $this.parent().removeClass('open');
+                        });
+                } else {
+                    $this
+                        .parent()
+                        .parent()
+                        .children('li.open')
+                        .children('.dropdown-menu')
+                        .slideUp(200);
+
+                    $this
+                        .parent()
+                        .parent()
+                        .children('li.open')
+                        .children('a')
+                        .removeClass('open');
+
+                    $this
+                        .parent()
+                        .parent()
+                        .children('li.open')
+                        .removeClass('open');
+
+                    $this
+                        .parent()
+                        .children('.dropdown-menu')
+                        .slideDown(200, () => {
+                            $this.parent().addClass('open');
+                        });
+                }
+            });
+
+            $('.offcanvas-toggle').click(function (e) {
+                e.preventDefault();
+                $('.offcanvas-menu').toggleClass('open');
+            });
+
+            // Sidebar Activity Class
+            const sidebarLinks = $('.sidebar').find('.sidebar-link');
+
+            sidebarLinks
+                .each((index, el) => {
+                    $(el).removeClass('active');
+                })
+                .filter(function () {
+                    const href = $(this).attr('href');
+                    const pattern = href[0] === '/' ? href.substr(1) : href;
+                    return pattern === (window.location.pathname).substr(1);
+                })
+                .addClass('active');
+
+            // ٍSidebar Toggle
+            $('.sidebar-toggle').on('click', e => {
+                $('.app').toggleClass('is-collapsed');
+                e.preventDefault();
+            });
+        });
+
+        // Other JavaScript code...
+
+        // Add Element to dom when resize screen
+        // $(window).resize(function() {
+        //     windowSize();
+        // });
+
+        // ------------------------------------------------------
+        // @Scrollbar
+        // ------------------------------------------------------
+
+        $(function () {
+            const scrollables = $('.scrollable');
+            if (scrollables.length > 0) {
+                scrollables.each((index, el) => {
+                    new PerfectScrollbar(el);
+                });
+            }
+        });
+
+        // ------------------------------------------------------
+        // @Navbar search
+        // ------------------------------------------------------
+
+        $(function () {
+            $('.search-toggle').on('click', e => {
+                $('.search-box, .search-input').toggleClass('active');
+                $('.search-input input').focus();
+                e.preventDefault();
+            });
+        });
+    </script>
+
+</body>
+</html>
